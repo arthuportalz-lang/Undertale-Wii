@@ -1,15 +1,20 @@
 local spr_player
 local x = 320
 local y = 240
-local speed = 3
+local speed = 6
 local dir = "left"
 local sprites = {}
 local mainfont
 local fullscr = false
+local tick = require("tick")
+local gamera = require("gamera")
+local cam = gamera.new(0,0,2000,2000)
 
 function love.load()
+	cam:setWindow(0,0,640,480)
 	love.window.setTitle("UNDERTABLE Framework for Love2D")
 	love.graphics.setDefaultFilter("nearest", "nearest")
+	love.sound.newSoundData("assets/sounds/music/mus_lancer.wav")
 
 	mainfont = love.graphics.newFont("assets/fonts/mainfont.ttf", 16)
 
@@ -20,6 +25,7 @@ function love.load()
 end
 
 function love.update(dt)
+	cam:setPosition(x, y)
 	if love.keyboard.isDown("left") then
 		x = x - speed
 		dir = "left"

@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Love2D",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "C:/Program Files/LOVE/love.exe",
+      "args": ["${workspaceFolder}/undertable-framework"],
+      "cwd": "${workspaceFolder}",
+      "console": "externalTerminal"
+    }
+  ]
+}
