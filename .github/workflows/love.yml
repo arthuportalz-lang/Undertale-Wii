@@ -1,0 +1,19 @@
+name: Build
+run-name: Building the game :D
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    # Build the applications
+    - uses: nhartland/love-build@v1
+      with:
+       app_name: 'undertable-framework'
+       love_version: '11.5'
+       source_dir: undertable-framework/
+    # Upload the built applications
+    - uses: actions/upload-artifact@v4
+      with:
+        name: built-applications
+        path: 'release'
