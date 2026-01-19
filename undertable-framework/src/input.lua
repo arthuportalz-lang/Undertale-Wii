@@ -1,5 +1,7 @@
 local input = {}
 
+local wiimote, wiimotePressed, pointer
+
 input.left = false
 input.right = false
 input.up = false
@@ -27,7 +29,7 @@ function input.update(dt)
                 input.X = true
             end
 
-            if key == "c" then
+            if key == "c" then 
                 input.C = true
             end
         end

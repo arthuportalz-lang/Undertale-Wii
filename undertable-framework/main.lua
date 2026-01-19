@@ -1,25 +1,18 @@
 sprites = {}
 
-local mainfont
+wii = false
 
-wii = true
-
-local mus_play = false
-local music = love.audio.newSource("assets/sounds/music/mus_intro.flac", "stream")
-local looped = false
-
-Timer = require 'libs.timer'
-
-local intro = require 'src.intro'
-local player = require 'src.player'
-local dialogue = require 'src.dialogue'
-local input = require 'src.input'
+local intro, player, input, mainfont
 
 function love.load()
+	intro = require 'src.intro'
+	player = require 'src.player'
+	input = require 'src.input'
+
 	if wii == false then
 		love.mouse.setVisible(false)
 		love.window.setIcon(love.image.newImageData("icon.png"))
-		love.window.setTitle("UNDERTABLE Framework for Love2D")
+		love.window.setTitle("UNDERTALE for Love2D")
 		love.graphics.setDefaultFilter("nearest", "nearest")
 		sprites.bg_firstroom = love.graphics.newImage("assets/maps/bg_firstroom.png")
 	else 
@@ -28,30 +21,30 @@ function love.load()
 	
 	mainfont = love.graphics.newFont("assets/fonts/mainfont.ttf", 16)
 
-	player.load()
 	intro.load()
 end
 
 function love.update(dt)
+	if wii == false then
+		love.timer.sleep(0.064 - dt)
+	end
+
 	intro.update(dt)
 	player.update(dt)
-	dialogue.update(dt)
 	input.update(dt)
-	Timer.update(dt)
 
 	player.stop_input = not intro.complete
-
-	if not music:isPlaying() and mus_play == true then
-		love.audio.play(music)
-	end
 end
 
 function love.draw()
 	love.graphics.setFont(mainfont)
-	love.graphics.draw(sprites.bg_firstroom, 0, 0, 0, 2, 2, 0, 0)
 	
-	player.draw()
-	intro.draw()
+	if intro.complete == false then
+		intro.draw()
+	else
+		love.graphics.draw(sprites.bg_firstroom, 0, 0, 0, 2, 2, 0, 0)
+		love.graphics.draw(sprites[player.dir], player.x, player.y, 0, 2, 2, 0, 0)
+	end
 end
 
 function love.keypressed(key)

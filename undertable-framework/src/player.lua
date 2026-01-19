@@ -2,18 +2,18 @@ local player = {}
 player.stop_input = false
 player.x = 320
 player.y = 240
-player.dir = "left"
-local speed = 4
-local gamera = 'libs.gamera'
-local input = require 'src.input'
-local spr_player
+player.dir = "right"
+local speed, input, spr_player
 
 function player.load()
+	speed = 6
+	input = require 'src.input'
+
 	if wii == true then
-		sprites.left = love.graphics.newTexture("assets/sprites/player/playerl/playerl0.png")
-		sprites.right = love.graphics.newTexture("assets/sprites/player/playerr/playerr0.png")
-		sprites.up = love.graphics.newTexture("assets/sprites/player/playeru/playeru0.png")
-		sprites.down = love.graphics.newTexture("assets/sprites/player/playerd/playerd0.png")
+		sprites.left = love.graphics.newTexture("assets/sprites/player/playerl/playerl0.jpg")
+		sprites.right = love.graphics.newTexture("assets/sprites/player/playerr/playerr0.jpg")
+		sprites.up = love.graphics.newTexture("assets/sprites/player/playeru/playeru0.jpg")
+		sprites.down = love.graphics.newTexture("assets/sprites/player/playerd/playerd0.jpg")
 	else
 		sprites.left = love.graphics.newImage("assets/sprites/player/playerl/playerl0.png")
 		sprites.right = love.graphics.newImage("assets/sprites/player/playerr/playerr0.png")
@@ -51,10 +51,6 @@ function player.update(dt)
 	end
 
 	spr_player = sprites[player.dir]
-end
-
-function player.draw()
-	love.graphics.draw(spr_player, player.x, player.y, 0, 2, 2, 0, 0)
 end
 
 return player
