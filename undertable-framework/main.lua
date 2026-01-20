@@ -6,8 +6,6 @@ local intro, player, input, mainfont
 
 function love.load()
 	intro = require 'src.intro'
-	player = require 'src.player'
-	input = require 'src.input'
 
 	if wii == false then
 		love.mouse.setVisible(false)
@@ -30,10 +28,6 @@ function love.update(dt)
 	end
 
 	intro.update(dt)
-	player.update(dt)
-	input.update(dt)
-
-	player.stop_input = not intro.complete
 end
 
 function love.draw()
