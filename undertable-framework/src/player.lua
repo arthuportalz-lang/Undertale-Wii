@@ -9,17 +9,10 @@ function player.load()
 	speed = 6
 	input = require 'src.input'
 
-	if wii == true then
-		sprites.left = love.graphics.newTexture("assets/sprites/player/playerl/playerl0.jpg")
-		sprites.right = love.graphics.newTexture("assets/sprites/player/playerr/playerr0.jpg")
-		sprites.up = love.graphics.newTexture("assets/sprites/player/playeru/playeru0.jpg")
-		sprites.down = love.graphics.newTexture("assets/sprites/player/playerd/playerd0.jpg")
-	else
-		sprites.left = love.graphics.newImage("assets/sprites/player/playerl/playerl0.png")
-		sprites.right = love.graphics.newImage("assets/sprites/player/playerr/playerr0.png")
-		sprites.up = love.graphics.newImage("assets/sprites/player/playeru/playeru0.png")
-		sprites.down = love.graphics.newImage("assets/sprites/player/playerd/playerd0.png")
-	end
+	sprites.left = love.graphics.newTexture("assets/sprites/player/playerl/playerl0.jpg")
+	sprites.right = love.graphics.newTexture("assets/sprites/player/playerr/playerr0.jpg")
+	sprites.up = love.graphics.newTexture("assets/sprites/player/playeru/playeru0.jpg")
+	sprites.down = love.graphics.newTexture("assets/sprites/player/playerd/playerd0.jpg")
 end
 
 function player.update(dt)
@@ -43,9 +36,8 @@ function player.update(dt)
 		player.dir = "down"
     end
 
-	if player.stop_input == true then
+	if player.stop_input then
 		speed = 0
-		player.dir = "left"
 	else
 		speed = 4
 	end

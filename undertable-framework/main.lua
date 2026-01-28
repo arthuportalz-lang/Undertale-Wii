@@ -1,38 +1,61 @@
+--______________________________________________________________________________________________________________________________
+--______________________________________________________________________________________________________________________________
+--
+--░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+--░  ░░░░  ░░   ░░░  ░░       ░░░        ░░       ░░░        ░░░      ░░░  ░░░░░░░░        ░░░░░░░  ░░░░  ░░        ░░        ░░
+--▒  ▒▒▒▒  ▒▒    ▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒▒▒▒  ▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒▒▒▒▒  ▒  ▒  ▒▒▒▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒
+--▓  ▓▓▓▓  ▓▓  ▓  ▓  ▓▓  ▓▓▓▓  ▓▓      ▓▓▓▓       ▓▓▓▓▓▓  ▓▓▓▓▓  ▓▓▓▓  ▓▓  ▓▓▓▓▓▓▓▓      ▓▓▓▓▓▓▓        ▓▓▓▓▓  ▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓▓
+--█  ████  ██  ██    ██  ████  ██  ████████  ███  ██████  █████        ██  ████████  ██████████   ██   █████  ████████  ████████
+--██      ███  ███   ██       ███        ██  ████  █████  █████  ████  ██        ██        ███  ████  ██        ██        ██████
+--██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                                                                                                                         
+--______________________________________________________________________________________________________________________________
+--______________________________________________________________________________________________________________________________
+
+_os = "nx"
+
 sprites = {}
 
-local intro, player, input, dialogue, mainfont
-local _INTRO = false
+_collectgarbage = false
+
+-- I'll test LÖVE Potion on Switch while I can't use LÖVEPower (very limited at the moment but WiiLÖVE is unstable)
+-- The cool part is that LÖVE Potion supports 3DS, Wii U and, well, the Switch
+
+local state = "intro"
+
+local intro, player, input, mainfont, dialogue
 
 function love.load()
-	intro = require 'src.intro'
+	if _os == "nx" then
+		love.graphics.setDefaultFilter("nearest", "nearest")
+	end
 
+	input = require 'src.input'
+	intro = require 'src.intro'
 	dialogue = require 'src.dialogue'
-	
-	sprites.bg_firstroom = love.graphics.newTexture("assets/maps/bg_firstroom.png")
 	
 	mainfont = love.graphics.newFont("assets/fonts/mainfont.ttf", 16)
 
 	intro.load()
+	dialogue.load()
 end
 
 function love.update(dt)
-	intro.update(dt)
+	input.update(dt)
+	
+	if not intro.complete then
+		intro.update(dt)
+	end
 
-	if intro.complete == true and _INTRO == false then
+	if _collectgarbage then
 		collectgarbage("collect")
-		_INTRO = true
+		_collectgarbage = false
 	end
 end
 
 function love.draw()
 	love.graphics.setFont(mainfont)
 
-	if intro.complete == false then
+	if not intro.complete then
 		intro.draw()
-	else
-		love.graphics.draw(sprites.bg_firstroom, 0, 0, 0, 2, 2, 0, 0)
-		love.graphics.draw(sprites[player.dir], player.x, player.y, 0, 2, 2, 0, 0)
 	end
-
-	dialogue.draw()
 end
