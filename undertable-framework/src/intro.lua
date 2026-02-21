@@ -2,15 +2,16 @@ intro = {}
 
 local dialogue = require 'src.dialogue'
 local input = require 'src.input'
+local language = require 'src.language'
 
 dialogue.dialogues = {
-	"L o n g   a g o,   t w o   r a c e s\nr u l e d   o v e r   E a r t h:\nH U M A N S   a n d   M O N S T E R S.",
-	"O n e   d a y,   w a r   b r o k e\no u t   b e t w e e n   t h e   t w o\nr a c e s.",
-	"A f t e r   a   l o n g   b a t t l e,\nt h e   h u m a n s   w e r e\nv i c t o r i o u s.",
-	"T h e y   s e a l e d   t h e   m o n s t e r s\nu n d e r g r o u n d   w i t h   a   m a g i c\ns p e l l.",
-	"M a n y   y e a r s   l a t e r. .",
-	"                      M T.  E B O T T\n                           2 0 1 X",
-	"L e g e n d s   s a y   t h a t   t h o s e\nw h o   c l i m b   t h e   m o u n t a i n\nn e v e r   r e t u r n.",
+	language.introDialogues[1],
+	language.introDialogues[2],
+	language.introDialogues[3],
+	language.introDialogues[4],
+	language.introDialogues[5],
+	language.introDialogues[6],
+	language.introDialogues[7]
 }
 
 dialogue.auto = true
@@ -43,43 +44,22 @@ function intro.load()
 	music = love.audio.newSource("assets/sounds/music/mus_intro.ogg", "stream")
 	sfx = love.audio.newSource("assets/sounds/sfx/mus_intronoise.ogg", "static")
 
-	if _os == "wii" then
-		sprites.splash = love.graphics.newTexture("assets/sprites/splash.png")
-		sprites.intro1 = love.graphics.newTexture("assets/sprites/intro/intro1.jpg")
-		sprites.intro2 = love.graphics.newTexture("assets/sprites/intro/intro2.jpg")
-		sprites.intro3 = love.graphics.newTexture("assets/sprites/intro/intro3.jpg")
-		sprites.intro4 = love.graphics.newTexture("assets/sprites/intro/intro4.jpg")
-		sprites.intro6 = love.graphics.newTexture("assets/sprites/intro/intro6.jpg")
-		sprites.intro7 = love.graphics.newTexture("assets/sprites/intro/intro7.jpg")
-		sprites.intro8 = love.graphics.newTexture("assets/sprites/intro/intro8.jpg")
-		sprites.intro9 = love.graphics.newTexture("assets/sprites/intro/intro9.jpg")
-		sprites.intro10 = love.graphics.newTexture("assets/sprites/intro/intro10.jpg")
-	elseif _os == "nx" then
-		sprites.splash = love.graphics.newImage("assets/sprites/splash.png")
-		sprites.intro1 = love.graphics.newImage("assets/sprites/intro/intro1.jpg")
-		sprites.intro2 = love.graphics.newImage("assets/sprites/intro/intro2.jpg")
-		sprites.intro3 = love.graphics.newImage("assets/sprites/intro/intro3.jpg")
-		sprites.intro4 = love.graphics.newImage("assets/sprites/intro/intro4.jpg")
-		sprites.intro6 = love.graphics.newImage("assets/sprites/intro/intro6.jpg")
-		sprites.intro7 = love.graphics.newImage("assets/sprites/intro/intro7.jpg")
-		sprites.intro8 = love.graphics.newImage("assets/sprites/intro/intro8.jpg")
-		sprites.intro9 = love.graphics.newImage("assets/sprites/intro/intro9.jpg")
-		sprites.intro10 = love.graphics.newImage("assets/sprites/intro/intro10.jpg")
-	end
+	sprites.splash = love.graphics.newImage("assets/sprites/splash.png")
+	sprites.intro1 = love.graphics.newImage("assets/sprites/intro/intro1.jpg")
+	sprites.intro2 = love.graphics.newImage("assets/sprites/intro/intro2.jpg")
+	sprites.intro3 = love.graphics.newImage("assets/sprites/intro/intro3.jpg")
+	sprites.intro4 = love.graphics.newImage("assets/sprites/intro/intro4.jpg")
+	sprites.intro6 = love.graphics.newImage("assets/sprites/intro/intro6.jpg")
+	sprites.intro7 = love.graphics.newImage("assets/sprites/intro/intro7.jpg")
+	sprites.intro8 = love.graphics.newImage("assets/sprites/intro/intro8.jpg")
+	sprites.intro9 = love.graphics.newImage("assets/sprites/intro/intro9.jpg")
+	sprites.intro10 = love.graphics.newImage("assets/sprites/intro/intro10.jpg")
 
 	love.audio.play(music)
 end
 
-
 function intro.update(dt)
-	if input.Z then
-		i = 15
-		dialogue.enable = false
-	end
-
-	dialogue.update()
-
-	dialogue.i = i
+	dialogue.update(dt)
 
 	time_acc = time_acc + dt
 
@@ -90,7 +70,7 @@ function intro.update(dt)
 		dialogue.finished = true
 		if i > 7 then
 			dialogue.enable = false
-		end
+    end    
 	end
 
 	if intro.complete then
@@ -121,7 +101,7 @@ function intro.update(dt)
 			alpha = alpha + 0.1
 		else
 			fade = -1
-		end
+    end
 	end
 
 	if i ~= 5 and i ~= 11 then
@@ -143,10 +123,10 @@ function intro.update(dt)
 				love.audio.play(sfx)
 				intro.played = true
 			end
-		end
+    end
 	end
 
-    introimg = sprites[intro.image]
+  introimg = sprites[intro.image]
 
 	if i == 13 or i == 14 then
 		if y < y_max then
@@ -174,7 +154,7 @@ function intro.draw()
 		end
 		
 		love.graphics.setColor(255, 255, 255, 1)
-		love.graphics.print(dialogue.textFinal, 120, 320, 0, 2, 2.3)
+		love.graphics.print(dialogue.textFinal, 120, 320, 0, 1.2, 1.2)
 	end
 end
 

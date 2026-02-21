@@ -18,8 +18,15 @@ dialogue.count = #dialogue.dialogues
 dialogue.auto = false
 dialogue.controlFinish = false
 dialogue.timer = 0
-dialogue.timerMax = 1
-dialogue.timerOriginal = 1
+
+if _os ~= "wii" then
+    dialogue.timerMax = 1
+    dialogue.timerOriginal = 1
+else
+    dialogue.timerMax = 0
+    dialogue.timerOriginal = 0
+end
+
 local sfx
 
 function dialogue.load()
@@ -36,7 +43,11 @@ function dialogue.update(dt)
         dialogue.count = #dialogue.dialogues
 
         if dialogue.dialogues[dialogue.i]:sub(dialogue.currentChar-1, dialogue.currentChar-1) == "," or dialogue.dialogues[dialogue.i]:sub(dialogue.currentChar-1, dialogue.currentChar-1) == ":" then
-            dialogue.timerMax = 15
+            if _os ~= "wii" then
+                dialogue.timerMax = 7
+            else
+                dialogue.timerMax = 15
+            end
         end
 
         if dialogue.timer > dialogue.timerMax then

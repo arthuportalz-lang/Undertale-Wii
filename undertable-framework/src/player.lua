@@ -2,7 +2,7 @@ local player = {}
 player.stop_input = false
 player.x = 320
 player.y = 240
-player.dir = "right"
+player.dir = "down"
 local speed, input, spr_player
 
 function player.load()
