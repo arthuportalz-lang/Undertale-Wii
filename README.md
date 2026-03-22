@@ -6,7 +6,7 @@
 
 - [x] Intro
 - [x] Start Menu
-    - [x] Intructions
+    - [x] Intruction
     - [x] Naming prompt
     - [ ] Settings
 - [ ] Ruins
