@@ -7,7 +7,7 @@
       "type": "cppvsdbg",
       "request": "launch",
       "program": "C:/Program Files/LOVE/love.exe",
-      "args": ["${workspaceFolder}/undertable-framework"],
+      "args": ["${workspaceFolder}/src"],
       "cwd": "${workspaceFolder}",
       "console": "externalTerminal"
     }
