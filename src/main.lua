@@ -80,7 +80,7 @@ function love.draw()
 		player.draw()
 	end
 
-	input.draw()
+	--input.draw()
 end
 
 -- Sorry for my janky code, I'm coding while learning
