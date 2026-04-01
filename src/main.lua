@@ -13,7 +13,7 @@
 
 _os = "wii"
 
-state = "intro"
+state = "secret"
 
 images = {}
 
@@ -25,7 +25,7 @@ else
     rectangleMode = "fill"
 end
 
-local intro, player, mainfont, dialogue, input, menu
+local intro, player, mainfont, dialogue, input, menu, secret
 
 function love.load()
 	if _os == "pc" then
@@ -37,11 +37,13 @@ function love.load()
 	player = require 'src.player'
 	input = require 'src.input'
 	menu = require 'src.menu'
+	secret = require 'src.secret'
 	
 	mainfont = love.graphics.newFont("assets/fonts/8bitoperator_jve.ttf", 32)
 
 	--intro.load()
 	player.load()
+	secret.load()
 end
 
 function love.update(dt)
@@ -72,6 +74,8 @@ function love.draw()
 		intro.draw()
 	elseif state == "menu" then
 		menu.draw()
+	elseif state == "secret" then
+		secret.draw()
 	else
 		player.draw()
 	end
