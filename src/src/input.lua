@@ -6,41 +6,28 @@ input.left = false
 input.right = false
 input.up = false
 input.down = false
+
+input.Z = false
 input.X = false
 input.C = false
-input.no_input = false
 
-wiimote = love.wiimote.getWiimotes()[1]
+input.noInput = false
+
+if debug == false then wiimote = love.wiimote.getWiimotes()[1] end
 
 function input.update(dt)
-	if not wiimotePressed and wiimote:isDown("1") then
-		wiimotePressed = true
-		input.Z = true
-	elseif not wiimote:isDown("1") then
-		wiimotePressed = false
-		input.Z = false
-	end
+	if debug then
+		input.left = love.keyboard.isDown("left")
+		input.right = love.keyboard.isDown("right")
+		input.up = love.keyboard.isDown("up")
+		input.down = love.keyboard.isDown("down")
 
-	if not wiimotePressed and wiimote:isDown("2") then
-		wiimotePressed = true
-		input.X = true
-	elseif not wiimote:isDown("2") then
-		wiimotePressed = false
-		input.X = false
+		if not input.left and not input.right and not input.up and not input.down then
+			input.noInput = true
+		else
+			input.noInput = false
+		end
 	end
-
-	if not wiimotePressed and wiimote:isDown("a") then
-		wiimotePressed = true
-		input.C = true
-	elseif not wiimote:isDown("a") then
-		wiimotePressed = false
-		input.C = false
-	end
-
-	input.left = wiimote:isDown("left")
-	input.right = wiimote:isDown("right")
-	input.up = wiimote:isDown("up")
-	input.down = wiimote:isDown("down")
 end
 
 return input

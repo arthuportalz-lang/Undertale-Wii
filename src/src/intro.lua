@@ -34,16 +34,20 @@ intro.image = "intro" .. i
 local introimg
 
 function intro.load()
-	images.intro1 = love.graphics.newTexture("assets/images/intro/intro1.jpg")
-	images.intro2 = love.graphics.newTexture("assets/images/intro/intro2.jpg")
-	images.intro3 = love.graphics.newTexture("assets/images/intro/intro3.jpg")
-	images.intro4 = love.graphics.newTexture("assets/images/intro/intro4.jpg")
-	images.intro6 = love.graphics.newTexture("assets/images/intro/intro6.jpg")
-	images.intro7 = love.graphics.newTexture("assets/images/intro/intro7.jpg")
-	images.intro8 = love.graphics.newTexture("assets/images/intro/intro8.jpg")
-	images.intro9 = love.graphics.newTexture("assets/images/intro/intro9.jpg")
-	images.intro10 = love.graphics.newTexture("assets/images/intro/intro10.jpg")
-	images.introlast = love.graphics.newTexture("assets/images/intro/introlast.jpg")
+	images.intro1 = love.graphics.newGraphics("assets/images/intro/intro1.jpg")
+	images.intro2 = love.graphics.newGraphics("assets/images/intro/intro2.jpg")
+	images.intro3 = love.graphics.newGraphics("assets/images/intro/intro3.jpg")
+	images.intro4 = love.graphics.newGraphics("assets/images/intro/intro4.jpg")
+	images.intro6 = love.graphics.newGraphics("assets/images/intro/intro6.jpg")
+	images.intro7 = love.graphics.newGraphics("assets/images/intro/intro7.jpg")
+	images.intro8 = love.graphics.newGraphics("assets/images/intro/intro8.jpg")
+	images.intro9 = love.graphics.newGraphics("assets/images/intro/intro9.jpg")
+	images.intro10 = love.graphics.newGraphics("assets/images/intro/intro10.jpg")
+	images.introlast = love.graphics.newGraphics("assets/images/intro/introlast.jpg")
+
+	images.onepixel = love.graphics.newGraphics("assets/images/1px.png")
+
+	images.splash = love.graphics.newGraphics("assets/images/splash.png")
 end
 
 function intro.update(dt)

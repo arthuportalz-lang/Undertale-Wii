@@ -11,28 +11,38 @@
 --_________________________________________________________________________________________________________________________________
 --_________________________________________________________________________________________________________________________________
 
-_os = "wii"
+-- Still Alive..!
 
-state = "secret"
+debug = true
+
+state = "intro"
 
 images = {}
 
+newGraphics = nil
+
 _collectgarbage = false
 
-if _os == "wii" then
+if debug == false then
     rectangleMode = true
 else
     rectangleMode = "fill"
 end
 
+if debug == false then
+    love.graphics.newGraphics = love.graphics.newTexture 
+else
+    love.graphics.newGraphics = love.graphics.newImage 
+end
+
 local intro, player, mainfont, dialogue, input, menu, secret
 
 function love.load()
-	if _os == "pc" then
-		love.graphics.setDefaultFilter("nearest", "nearest")
+	if debug then
+		love.graphics.setDefaultFilter("nearest", "nearest", 1)
 	end
 
-	--intro = require 'src.intro'
+	intro = require 'src.intro'
 	dialogue = require 'src.dialogue'
 	player = require 'src.player'
 	input = require 'src.input'
@@ -41,16 +51,13 @@ function love.load()
 	
 	mainfont = love.graphics.newFont("assets/fonts/8bitoperator_jve.ttf", 32)
 
-	--intro.load()
+	intro.load()
 	player.load()
 	secret.load()
 end
 
 function love.update(dt)
-	if _os == "pc" then
-		love.timer.sleep(0.064 - dt)
-	end
-
+	-- little experiment with garbage collection
 	if _collectgarbage then
 		collectgarbage("collect")
 		_collectgarbage = false

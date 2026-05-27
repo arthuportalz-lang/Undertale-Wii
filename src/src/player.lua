@@ -64,22 +64,22 @@ end
 
 function player.update(dt)
     if input.left then
-		player.x = player.x - speed
+		player.x = player.x - (speed * dt * 30)
 		player.dir = "left"
 	end
 
 	if input.right then
-		player.x = player.x + speed
+		player.x = player.x + (speed * dt * 30)
 		player.dir = "right"
 	end
 
 	if input.up then
-		player.y = player.y - speed
+		player.y = player.y - (speed * dt * 30)
 		player.dir = "up"
 	end
 
 	if input.down then
-		player.y = player.y + speed
+		player.y = player.y + (speed * dt * 30)
 		player.dir = "down"
     end
 
@@ -104,7 +104,7 @@ function player.update(dt)
 
 	time_acc = time_acc + dt
 
-	if input.no_input == false then
+	if input.noInput == false then
 		if time_acc > 0.2 then
 			if player.dir == "left" or player.dir == "right" then
 				hFrame = hFrame + 1

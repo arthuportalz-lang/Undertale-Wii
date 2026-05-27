@@ -19,13 +19,8 @@ dialogue.auto = false
 dialogue.controlFinish = false
 dialogue.timer = 0
 
-if _os == "wii" then 
-    dialogue.timerMax = 0
-    dialogue.timerOriginal = 0
-else
-    dialogue.timerMax = -1
-    dialogue.timerOriginal = -1
-end
+dialogue.timerMax = 0
+dialogue.timerOriginal = 0
 
 
 
