@@ -1,3 +1,20 @@
+Hello,
+
+As of writing this, six days ago, Cinnamon, a full Wii U and 3DS port of the GML runner in C that both Undertale and Deltarune Chapter 1 use was also ported to the Wii.
+
+And with that, Undertale Wii is officially being discontinued, since it basically defeats the purpose of this WiiLÖVE port.
+
+Honestly, I was kinda hoping something like this would eventually happen, not because I'm lazy or anything, but because the original thing is always better, y'know?
+
+I'm also really sorry for not updating Undertale Wii more often. I've been working on the v4 update of Annoying Dog Clicker while also polishing the "launcher" for a game collection that isn't even close to being finished yet, which I hope to eventually release on Steam and consoles. And while doing all of this, I spend half of my day at school since I still just 14.
+
+Regardless, it was a ton of fun working on this project while I was learning how to **LÖVE**.
+
+Thank you to everyone who supported the project.
+
+Bye :)
+
+
 # ![UNDERTALE Wii logo](images/logo.png)
 
 [UNDERTALE](https://store.steampowered.com/app/391540/Undertale/)! The RPG game where you don't have to destroy anyone... ported to the Wii, using <a href="https://github.com/HTV04/wiilove">WiiLÖVE</a>, an *awesome* 2D Lua framework<br>
